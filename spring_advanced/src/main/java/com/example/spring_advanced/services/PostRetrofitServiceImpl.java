@@ -1,0 +1,40 @@
+package com.example.spring_advanced.services;
+
+import com.example.spring_advanced.models.Post;
+import com.example.spring_advanced.util.PostRetrofitUtil;
+import org.springframework.stereotype.Service;
+import retrofit2.Call;
+import retrofit2.Response;
+import retrofit2.Retrofit;
+
+import java.io.IOException;
+import java.util.ArrayList;
+import java.util.List;
+
+@Service
+public class PostRetrofitServiceImpl implements PostRetrofitService {
+
+    private Retrofit retrofit;
+    private PostRetrofitAPI postRetrofitAPI;
+
+    public PostRetrofitServiceImpl () {
+        retrofit = PostRetrofitUtil.getRetrofitInstance();
+        postRetrofitAPI = retrofit.create(PostRetrofitAPI.class);
+    }
+
+    @Override
+    public List<Post> fetchPosts() {
+        List<Post> postList = new ArrayList<>();
+        Call<List<Post>> fetchPostCall = postRetrofitAPI.fetchPosts();
+
+        try {
+            Response<List<Post>> response = fetchPostCall.execute();
+            if(response.isSuccessful() && response.body() != null) {
+                postList = response.body();
+            }
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        }
+        return postList;
+    }
+}
