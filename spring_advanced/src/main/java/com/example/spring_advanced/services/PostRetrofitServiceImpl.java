@@ -1,6 +1,7 @@
 package com.example.spring_advanced.services;
 
 import com.example.spring_advanced.models.Post;
+import com.example.spring_advanced.repositories.PostRepository;
 import com.example.spring_advanced.util.PostRetrofitUtil;
 import org.springframework.stereotype.Service;
 import retrofit2.Call;
@@ -14,10 +15,12 @@ import java.util.List;
 @Service
 public class PostRetrofitServiceImpl implements PostRetrofitService {
 
+    private final PostRepository postRepository;
     private Retrofit retrofit;
     private PostRetrofitAPI postRetrofitAPI;
 
-    public PostRetrofitServiceImpl () {
+    public PostRetrofitServiceImpl (PostRepository postRepository) {
+        this.postRepository = postRepository;
         retrofit = PostRetrofitUtil.getRetrofitInstance();
         postRetrofitAPI = retrofit.create(PostRetrofitAPI.class);
     }
@@ -36,5 +39,9 @@ public class PostRetrofitServiceImpl implements PostRetrofitService {
             throw new RuntimeException(e);
         }
         return postList;
+    }
+
+    public void save (Post post) {
+        postRepository.save(post);
     }
 }

@@ -18,6 +18,7 @@ public class PostRetrofitController {
 
     @GetMapping("/posts")
     public List<Post> fetchPosts () {
-       return postRetrofitService.fetchPosts();
+        postRetrofitService.fetchPosts().stream().forEach(post -> postRetrofitService.save(post));
+        return postRetrofitService.fetchPosts();
     }
 }

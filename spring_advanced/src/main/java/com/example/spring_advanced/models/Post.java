@@ -1,6 +1,15 @@
 package com.example.spring_advanced.models;
 
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+
+@Entity
 public class Post {
+    @Id
+    @GeneratedValue(strategy = GenerationType.SEQUENCE)
+    private Long postId;
     private int userId;
     private int id;
     private String title;

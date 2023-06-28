@@ -6,4 +6,5 @@ import java.util.List;
 
 public interface PostRetrofitService {
     List<Post> fetchPosts();
+    void save (Post post);
 }
