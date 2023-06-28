@@ -44,4 +44,8 @@ public class PostRetrofitServiceImpl implements PostRetrofitService {
     public void save (Post post) {
         postRepository.save(post);
     }
+
+    public List<Post> findAll () {
+        return postRepository.findAll();
+    }
 }

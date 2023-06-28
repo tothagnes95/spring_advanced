@@ -2,6 +2,7 @@ package com.example.spring_advanced.controllers;
 
 import com.example.spring_advanced.models.Post;
 import com.example.spring_advanced.services.PostRetrofitService;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -20,5 +21,10 @@ public class PostRetrofitController {
     public List<Post> fetchPosts () {
         postRetrofitService.fetchPosts().stream().forEach(post -> postRetrofitService.save(post));
         return postRetrofitService.fetchPosts();
+    }
+
+    @GetMapping("/listPosts")
+    public ResponseEntity<List<Post>> listAllPost () {
+        return ResponseEntity.ok(postRetrofitService.findAll());
     }
 }
