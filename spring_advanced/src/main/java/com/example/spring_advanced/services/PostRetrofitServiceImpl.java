@@ -48,4 +48,8 @@ public class PostRetrofitServiceImpl implements PostRetrofitService {
     public List<Post> findAll () {
         return postRepository.findAll();
     }
+
+    public Post findPostById(Long id) {
+        return postRepository.findById(id).get();
+    }
 }

@@ -9,4 +9,5 @@ public interface PostRetrofitService {
     void save (Post post);
 
     List<Post> findAll ();
+    Post findPostById(Long id);
 }
