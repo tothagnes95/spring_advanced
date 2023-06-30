@@ -21,5 +21,4 @@ public class UserIntegrationTest {
       mockMvc.perform(post("/user?user=agi&password=pwd"))
               .andExpect(status().isOk());
   }
-
 }

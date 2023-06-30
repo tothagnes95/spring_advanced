@@ -6,14 +6,11 @@ import com.example.spring_advanced.services.PostRetrofitServiceImpl;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 import org.mockito.Mockito;
-
 import java.util.Optional;
 
 public class PostMockUnitTest {
     private PostRepository mockRepository = Mockito.mock(PostRepository.class);
     private PostRetrofitServiceImpl postRetrofitServiceImpl = new PostRetrofitServiceImpl(mockRepository);
-
-    //Unit test
 
     @Test
     public void findByIdTest () {

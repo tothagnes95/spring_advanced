@@ -13,7 +13,7 @@ import static org.junit.Assert.assertNotNull;
 
 @RunWith(SpringRunner.class)
 @SpringBootTest(classes = SpringAdvancedApplication.class)
-public class PostUnitTest {
+public class PostInMemoryDBUnitTest {
 
     @Autowired
     private PostRepository postRepository;

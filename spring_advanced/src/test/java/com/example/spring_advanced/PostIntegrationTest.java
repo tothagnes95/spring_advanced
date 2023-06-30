@@ -8,7 +8,7 @@ import org.springframework.boot.test.autoconfigure.web.servlet.AutoConfigureMock
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.web.servlet.MockMvc;
 import org.springframework.test.web.servlet.request.MockMvcRequestBuilders;
-
+import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.content;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 
@@ -37,5 +37,11 @@ public class PostIntegrationTest {
                                 "    }]\n"
                 ))
                 .andExpect(status().isOk());
+    }
+
+    @Test
+    public void listPostsTest_noAuthorization () throws Exception {
+        mockMvc.perform(get("/listPosts"))
+                .andExpect(status().isForbidden());
     }
 }
