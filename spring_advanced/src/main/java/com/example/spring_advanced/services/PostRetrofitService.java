@@ -8,7 +8,6 @@ import java.util.List;
 public interface PostRetrofitService {
     List<Post> fetchPosts();
     void save (Post post);
-
     List<PostDTO> findAll ();
     PostDTO findPostById(Long id) throws Exception;
 }

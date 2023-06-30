@@ -1,7 +1,6 @@
 package com.example.spring_advanced.controllers;
 
 import com.example.spring_advanced.models.DTOs.PostDTO;
-import com.example.spring_advanced.models.Post;
 import com.example.spring_advanced.services.PostRetrofitService;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;

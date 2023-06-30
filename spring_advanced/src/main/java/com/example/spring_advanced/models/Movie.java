@@ -11,18 +11,11 @@ public class Movie {
     @Id
     @GeneratedValue(strategy = GenerationType.SEQUENCE)
     private Long movieId;
-    //private boolean adult;
-    //private String backdrop_path;
-    //private Integer[] genre_ids;
-    //private Integer id;
     private String original_language;
     private String original_title;
     private String overview;
     private  Double popularity;
-    //private  String poster_path;
     private String release_date;
-    //private String title;
-    //private boolean video;
     private Double vote_average;
     private Integer vote_count;
 
