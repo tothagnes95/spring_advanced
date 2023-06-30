@@ -24,8 +24,7 @@ public class PostIntegrationTest {
 
     @Test
     public void listPostsTest () throws Exception {
-        Post testPost = postRepository
-                .save(new Post(1L, 1, 1, "test", "test"));
+        postRepository.save(new Post(1L, 1, 1, "test", "test"));
         mockMvc.perform(MockMvcRequestBuilders.get("/listPosts")
                 .header("Authorization", "Bearer eyJhbGciOiJIUzUxMiJ9.eyJqdGkiOiJzb2Z0dGVrSldUIiwic3ViIjoiYWdpIiwiYXV0aG9yaXRpZXMiOlsiUk9MRV9VU0VSIl0sImlhdCI6MTY4Nzk0MzU5MiwiZXhwIjoxNjg3OTQ0MTkyfQ.qKjh2KXZy8ag_gqponBKL38TdQBGeNBMq9gB9aBaOOy4FUFmc2rydNV2vZa79ti__eO5rxf5z1CFhkBjq7U1SA"))
                 .andExpect(content().json(
