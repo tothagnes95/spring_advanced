@@ -2,31 +2,31 @@ package com.example.spring_advanced;
 
 import com.example.spring_advanced.models.Post;
 import com.example.spring_advanced.repositories.PostRepository;
-import com.example.spring_advanced.services.PostRetrofitServiceImpl;
-import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
-import org.mockito.Mockito;
+import org.junit.runner.RunWith;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.boot.test.context.SpringBootTest;
+import org.springframework.test.context.junit4.SpringRunner;
 
-import java.util.Optional;
+import static junit.framework.TestCase.assertEquals;
+import static org.junit.Assert.assertNotNull;
 
+@RunWith(SpringRunner.class)
+@SpringBootTest(classes = SpringAdvancedApplication.class)
 public class PostUnitTest {
-    private PostRepository mockRepository = Mockito.mock(PostRepository.class);
-    private PostRetrofitServiceImpl postRetrofitServiceImpl = new PostRetrofitServiceImpl(mockRepository);
 
-    //Unit test
+    @Autowired
+    private PostRepository postRepository;
 
     @Test
-    public void findByIdTest () {
-        Post post = new Post(1, 1, "sunt aut facere repellat provident occaecati excepturi optio reprehenderit", "quia et suscipit\n" +
-                " suscipit recusandae consequuntur expedita et cum\n" +
-                " reprehenderit molestiae ut ut quas totam\n" +
-                " nostrum rerum est autem sunt rem eveniet architecto");
-        Mockito.when(mockRepository.findById(1L)).thenReturn(Optional.of(post));
+    public void savePostToRepository_AndGive_OK() {
+        Post genericEntity = postRepository
+                .save(new Post(1L, 1, 1, "test", "test"));
+        Post foundEntity = postRepository
+                .findById(genericEntity.getPostId()).get();
 
-        Post postResult = postRetrofitServiceImpl.findPostById(1L);
-
-        Assertions.assertEquals(post, postResult);
-        Mockito.verify(mockRepository).findById(1L);
+        assertNotNull(foundEntity);
+        assertEquals(genericEntity.getTitle(), foundEntity.getTitle());
+        assertEquals(genericEntity.getId(), foundEntity.getId());
     }
-
 }

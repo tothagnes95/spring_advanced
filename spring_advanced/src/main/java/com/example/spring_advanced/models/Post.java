@@ -22,6 +22,14 @@ public class Post {
         this.body = body;
     }
 
+    public Post(Long postId, int userId, int id, String title, String body) {
+        this.postId = postId;
+        this.userId = userId;
+        this.id = id;
+        this.title = title;
+        this.body = body;
+    }
+
     public Post() {}
 
     public int getUserId() {
@@ -54,5 +62,13 @@ public class Post {
 
     public void setBody(String body) {
         this.body = body;
+    }
+
+    public Long getPostId() {
+        return postId;
+    }
+
+    public void setPostId(Long postId) {
+        this.postId = postId;
     }
 }
